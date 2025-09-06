@@ -7,102 +7,490 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <header>
-      <div class="container">
-        <div class="header-content">
-          <h1>Produktempfehlungen 2025</h1>
-          <p>Unabhängige Bewertungen und Kaufberatung</p>
+    <!-- Modal für Artikel-Detail -->
+    <div id="articleModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img id="modalImage" src="" alt="" />
+          <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <span id="modalCategory" class="modal-category"></span>
+          <h2 id="modalTitle" class="modal-title"></h2>
+          <div id="modalMeta" class="modal-meta"></div>
+          <div id="modalContent" class="modal-text"></div>
+          <div id="modalCTA" class="modal-cta"></div>
         </div>
       </div>
-    </header>
+    </div>
 
-    <nav>
-      <div class="container">
-        <div class="nav-content">
-          <a href="#" class="nav-item">Startseite</a>
-          <a href="#" class="nav-item">Kategorien</a>
-          <a href="#" class="nav-item">Testberichte</a>
-          <a href="#" class="nav-item">Kaufratgeber</a>
-          <a href="#" class="nav-item">Über uns</a>
-        </div>
-      </div>
-    </nav>
-
-    <main>
-      <div class="container">
-        <div class="content-header">
-          <h2>Aktuelle Produktempfehlungen</h2>
-          <div class="meta-info">
-            Zuletzt aktualisiert: September 2025 | Redaktionell geprüft
+    <!-- Header -->
+    <header class="header">
+      <div class="header-top">
+        <div class="container">
+          <div class="header-content">
+            <a href="/" class="logo">TrendBuying</a>
+            <div class="header-search">
+              <input
+                type="search"
+                class="search-box"
+                placeholder="Suche nach Produkten..."
+              />
+            </div>
           </div>
         </div>
-
-        <div class="disclaimer">
-          <strong>Hinweis:</strong> Diese Seite enthält Affiliate-Links. Wenn
-          Sie über diese Links einkaufen, erhalten wir eine kleine Provision,
-          ohne dass für Sie zusätzliche Kosten entstehen.
+      </div>
+      <nav class="nav">
+        <div class="container">
+          <div class="nav-content">
+            <a href="#" class="nav-item active" data-filter="all"
+              >Alle Produkte</a
+            >
+            <a href="#" class="nav-item" data-filter="Küchengeräte"
+              >Küchengeräte</a
+            >
+            <a href="#" class="nav-item" data-filter="Smart Home">Smart Home</a>
+            <a href="#" class="nav-item" data-filter="Fitness & Gesundheit"
+              >Fitness & Gesundheit</a
+            >
+            <a href="#" class="nav-item" data-filter="Technik">Technik</a>
+            <a href="#" class="nav-item" data-filter="Haushalt">Haushalt</a>
+            <a href="#" class="nav-item">Kaufratgeber</a>
+          </div>
         </div>
+      </nav>
+    </header>
 
-        <div id="products-container" class="blog-grid">
-          <!-- Produkte werden hier dynamisch geladen -->
-        </div>
+    <!-- Main Content -->
+    <main class="container">
+      <div class="main-layout">
+        <!-- Articles Section -->
+        <section class="articles-section">
+          <div class="section-header">
+            <h1 class="section-title">Aktuelle Testberichte & Empfehlungen</h1>
+            <p class="section-subtitle">
+              Unabhängige Produkttests und Kaufberatung
+            </p>
+          </div>
+
+          <div id="articles-container">
+            <!-- Articles werden hier dynamisch geladen -->
+          </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <!-- Trending Widget -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Beliebte Artikel</h3>
+            <ul class="trending-list">
+              <li class="trending-item">
+                <a href="#" class="trending-link"
+                  >Die besten Heißluftfritteusen 2025 im Vergleich</a
+                >
+                <div class="trending-meta">12.5k Aufrufe</div>
+              </li>
+              <li class="trending-item">
+                <a href="#" class="trending-link"
+                  >Smart Home für Einsteiger: Der komplette Guide</a
+                >
+                <div class="trending-meta">8.3k Aufrufe</div>
+              </li>
+              <li class="trending-item">
+                <a href="#" class="trending-link"
+                  >Fitness-Tracker Test: Welcher passt zu dir?</a
+                >
+                <div class="trending-meta">6.7k Aufrufe</div>
+              </li>
+              <li class="trending-item">
+                <a href="#" class="trending-link"
+                  >Multikocher im Test: Alles in einem Gerät?</a
+                >
+                <div class="trending-meta">5.2k Aufrufe</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Newsletter Widget -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Newsletter</h3>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--text-secondary);
+                margin-bottom: 1rem;
+              "
+            >
+              Wöchentliche Produkttipps und exklusive Angebote
+            </p>
+            <form class="newsletter-form">
+              <input
+                type="email"
+                class="newsletter-input"
+                placeholder="Deine E-Mail-Adresse"
+              />
+              <button type="submit" class="newsletter-button">Anmelden</button>
+            </form>
+          </div>
+
+          <!-- Info Widget -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Über uns</h3>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--text-secondary);
+                line-height: 1.5;
+              "
+            >
+              TrendBuying ist dein unabhängiger Ratgeber für smarte
+              Kaufentscheidungen. Wir testen und bewerten Produkte, damit du die
+              beste Wahl triffst.
+            </p>
+            <p
+              style="
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                margin-top: 1rem;
+              "
+            >
+              * Diese Seite enthält Affiliate-Links. Bei einem Kauf erhalten wir
+              eine kleine Provision.
+            </p>
+          </div>
+        </aside>
       </div>
     </main>
 
+    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="footer-content">
-          <p>&copy; 2025 Produktempfehlungen. Alle Rechte vorbehalten.</p>
-          <div class="footer-links">
-            <a href="impressum.html">Impressum</a>
-            <a href="datenschutz.html">Datenschutz</a>
-            <a href="#">Kontakt</a>
-            <a href="#">Newsletter</a>
+          <div class="footer-column">
+            <h4>Kategorien</h4>
+            <ul>
+              <li><a href="#">Küchengeräte</a></li>
+              <li><a href="#">Smart Home</a></li>
+              <li><a href="#">Fitness & Sport</a></li>
+              <li><a href="#">Technik & Gadgets</a></li>
+            </ul>
           </div>
+          <div class="footer-column">
+            <h4>Ratgeber</h4>
+            <ul>
+              <li><a href="#">Kaufberatung</a></li>
+              <li><a href="#">Produktvergleiche</a></li>
+              <li><a href="#">Testberichte</a></li>
+              <li><a href="#">Tipps & Tricks</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Informationen</h4>
+            <ul>
+              <li><a href="#">Über uns</a></li>
+              <li><a href="#">Kontakt</a></li>
+              <li><a href="#">Presse</a></li>
+              <li><a href="#">Kooperationen</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Rechtliches</h4>
+            <ul>
+              <li><a href="impressum.html">Impressum</a></li>
+              <li><a href="datenschutz.html">Datenschutz</a></li>
+              <li><a href="#">Cookie-Einstellungen</a></li>
+              <li><a href="#">AGB</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 TrendBuying. Alle Rechte vorbehalten.</p>
         </div>
       </div>
     </footer>
 
     <script>
+      // Globale Variable für Produkte
+      let productsData = [];
+      let currentFilter = "all";
+
+      // Filter-Funktion
+      function filterProducts(category) {
+        currentFilter = category;
+        const container = document.getElementById("articles-container");
+        container.innerHTML = ""; // Leere Container
+
+        // Filtere Produkte
+        const filteredProducts =
+          category === "all"
+            ? productsData
+            : productsData.filter((product) => product.category === category);
+
+        // Zeige gefilterte Produkte oder Meldung
+        if (filteredProducts.length === 0) {
+          container.innerHTML = `
+            <div style="padding: 3rem; text-align: center; color: var(--text-secondary);">
+              <p style="font-size: 1.125rem; margin-bottom: 1rem;">Keine Produkte in dieser Kategorie gefunden.</p>
+              <p>Weitere Produkte werden in Kürze hinzugefügt.</p>
+            </div>
+          `;
+        } else {
+          displayArticles(filteredProducts);
+
+          // Update Header
+          updateSectionHeader(category, filteredProducts.length);
+        }
+      }
+
+      // Update Section Header basierend auf Filter
+      function updateSectionHeader(category, count) {
+        const titleElement = document.querySelector(".section-title");
+        const subtitleElement = document.querySelector(".section-subtitle");
+
+        if (category === "all") {
+          titleElement.textContent = "Aktuelle Testberichte & Empfehlungen";
+          subtitleElement.textContent =
+            "Unabhängige Produkttests und Kaufberatung";
+        } else {
+          titleElement.textContent = `${category} - Testberichte`;
+          subtitleElement.textContent = `${count} ${
+            count === 1 ? "Produkt" : "Produkte"
+          } in dieser Kategorie`;
+        }
+      }
+
+      // Modal Funktionen
+      function openModal(product, imageUrl) {
+        const modal = document.getElementById("articleModal");
+
+        // Setze Inhalte
+        document.getElementById("modalImage").src = imageUrl;
+        document.getElementById("modalCategory").textContent = product.category;
+        document.getElementById("modalTitle").textContent = product.headline;
+
+        // Meta-Informationen
+        document.getElementById("modalMeta").innerHTML = `
+          <span>Von Redaktion</span>
+          <span>•</span>
+          <span>${formatDate(product.createdAt)}</span>
+          <span>•</span>
+          <span>${calculateReadTime(product.description + product.intro)}</span>
+        `;
+
+        // Hauptinhalt
+        let contentHTML = `
+          <p><strong>${product.intro}</strong></p>
+          <p>${product.description}</p>
+        `;
+
+        // Vorteile hinzufügen
+        if (product.benefits && product.benefits.length > 0) {
+          contentHTML += `
+            <div class="modal-benefits">
+              <h3>Die wichtigsten Vorteile</h3>
+              <ul>
+                ${product.benefits
+                  .map((benefit) => `<li>${benefit}</li>`)
+                  .join("")}
+              </ul>
+            </div>
+          `;
+        }
+
+        // SEO/Meta Description als zusätzlicher Text
+        contentHTML += `<p>${product.metaDescription}</p>`;
+
+        document.getElementById("modalContent").innerHTML = contentHTML;
+
+        // Call-to-Action
+        document.getElementById("modalCTA").innerHTML = `
+          <div>
+            <div style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Aktueller Preis</div>
+            <div class="modal-price">${product.price}€</div>
+          </div>
+          <a href="${
+            product.affiliateLink
+          }" target="_blank" rel="noopener nofollow" class="modal-button">
+            ${product.cta || "Zum Angebot →"}
+          </a>
+        `;
+
+        // Modal anzeigen
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("articleModal");
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      // Schließe Modal bei Klick außerhalb
+      document
+        .getElementById("articleModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeModal();
+          }
+        });
+
+      // ESC-Taste zum Schließen
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeModal();
+        }
+      });
+
+      // Generiere Placeholder-Bilder basierend auf Kategorie
+      function getPlaceholderImage(category, index) {
+        const images = {
+          Küchengeräte: [
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1584269600519-112d071b35e6?w=600&h=400&fit=crop",
+          ],
+          "Smart Home": [
+            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1565538810634-b5bdb714032a?w=600&h=400&fit=crop",
+          ],
+          "Fitness & Gesundheit": [
+            "https://images.unsplash.com/photo-1540206063137-4a88ca974d1a?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1557330359-ffb0deed6163?w=600&h=400&fit=crop",
+          ],
+        };
+
+        const categoryImages = images[category] || images["Küchengeräte"];
+        return categoryImages[index % categoryImages.length];
+      }
+
+      // Formatiere Datum
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        const months = [
+          "Januar",
+          "Februar",
+          "März",
+          "April",
+          "Mai",
+          "Juni",
+          "Juli",
+          "August",
+          "September",
+          "Oktober",
+          "November",
+          "Dezember",
+        ];
+        return `${date.getDate()}. ${
+          months[date.getMonth()]
+        } ${date.getFullYear()}`;
+      }
+
+      // Berechne Lesezeit
+      function calculateReadTime(text) {
+        const wordsPerMinute = 200;
+        const words = text.split(" ").length;
+        const minutes = Math.ceil(words / wordsPerMinute);
+        return `${minutes} Min. Lesezeit`;
+      }
+
       // Lade Produkte aus JSON
       async function loadProducts() {
         try {
           const response = await fetch("data/products.json");
-          const products = await response.json();
-          displayProducts(products);
+          productsData = await response.json();
+          displayArticles(productsData);
         } catch (error) {
           console.error("Fehler beim Laden der Produkte:", error);
-          document.getElementById("products-container").innerHTML =
-            '<div class="loading">Produkte konnten nicht geladen werden.</div>';
+          document.getElementById("articles-container").innerHTML =
+            '<p style="color: var(--text-secondary);">Artikel konnten nicht geladen werden.</p>';
         }
       }
 
-      // Zeige Produkte an
-      function displayProducts(products) {
-        const container = document.getElementById("products-container");
+      // Zeige Artikel an
+      function displayArticles(products) {
+        const container = document.getElementById("articles-container");
 
-        products.forEach((product) => {
-          const card = `
-            <article class="blog-card">
-              <div class="card-content">
-                <span class="trend-indicator">Empfehlung ${product.trendScore}/100</span>
-                <h3>${product.headline}</h3>
-                <p>${product.intro}</p>
-                <div class="card-footer">
-                  <span class="price-tag">${product.price}€</span>
-                  <a href="${product.affiliateLink}" class="read-more" target="_blank" rel="nofollow noopener">
-                    Zum Angebot
-                  </a>
-                </div>
+        products.forEach((product, index) => {
+          const readTime = calculateReadTime(
+            product.description + product.intro
+          );
+          const formattedDate = formatDate(product.createdAt);
+          const imageUrl = getPlaceholderImage(product.category, index);
+
+          const article = document.createElement("article");
+          article.className = "article";
+          article.onclick = function () {
+            openModal(product, imageUrl);
+          };
+
+          article.innerHTML = `
+            <div class="article-image">
+              <img src="${imageUrl}" alt="${
+            product.productName
+          }" loading="lazy">
+              <span class="article-badge">Test ${product.trendScore}/100</span>
+            </div>
+            <div class="article-content">
+              <div class="article-meta">
+                <a href="#" class="article-category" onclick="event.stopPropagation()">${
+                  product.category
+                }</a>
+                <span class="meta-separator"></span>
+                <span>${formattedDate}</span>
+                <span class="meta-separator"></span>
+                <span>${readTime}</span>
               </div>
-            </article>
+              <div class="article-title">
+                ${product.headline}
+              </div>
+              <p class="article-excerpt">
+                ${product.intro} ${product.description.substring(0, 150)}...
+              </p>
+              <div class="article-footer">
+                <div class="article-author">
+                  <div class="author-avatar"></div>
+                  <span>Redaktion</span>
+                </div>
+                <span class="article-readtime">ab ${product.price}€</span>
+              </div>
+            </div>
           `;
-          container.innerHTML += card;
+
+          container.appendChild(article);
         });
       }
 
       // Starte beim Laden der Seite
-      loadProducts();
+      document.addEventListener("DOMContentLoaded", function () {
+        loadProducts();
+
+        // Filter Event Listener
+        const filterLinks = document.querySelectorAll(".nav-item[data-filter]");
+        filterLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Update active state
+            filterLinks.forEach((l) => l.classList.remove("active"));
+            this.classList.add("active");
+
+            // Filter products
+            const category = this.getAttribute("data-filter");
+            filterProducts(category);
+          });
+        });
+
+        // Newsletter Form Handler
+        const newsletterForm = document.querySelector(".newsletter-form");
+        if (newsletterForm) {
+          newsletterForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            alert("Newsletter-Anmeldung wird in Kürze verfügbar sein.");
+          });
+        }
+      });
     </script>
   </body>
 </html>
