@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TrendScout 2025 - Die angesagtesten Produkte</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <h1>Produktempfehlungen 2025</h1>
+          <p>Unabhängige Bewertungen und Kaufberatung</p>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <div class="container">
+        <div class="nav-content">
+          <a href="#" class="nav-item">Startseite</a>
+          <a href="#" class="nav-item">Kategorien</a>
+          <a href="#" class="nav-item">Testberichte</a>
+          <a href="#" class="nav-item">Kaufratgeber</a>
+          <a href="#" class="nav-item">Über uns</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container">
+        <div class="content-header">
+          <h2>Aktuelle Produktempfehlungen</h2>
+          <div class="meta-info">
+            Zuletzt aktualisiert: September 2025 | Redaktionell geprüft
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          <strong>Hinweis:</strong> Diese Seite enthält Affiliate-Links. Wenn
+          Sie über diese Links einkaufen, erhalten wir eine kleine Provision,
+          ohne dass für Sie zusätzliche Kosten entstehen.
+        </div>
+
+        <div id="products-container" class="blog-grid">
+          <!-- Produkte werden hier dynamisch geladen -->
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <p>&copy; 2025 Produktempfehlungen. Alle Rechte vorbehalten.</p>
+          <div class="footer-links">
+            <a href="#">Impressum</a>
+            <a href="#">Datenschutz</a>
+            <a href="#">Kontakt</a>
+            <a href="#">Newsletter</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Lade Produkte aus JSON
+      async function loadProducts() {
+        try {
+          const response = await fetch("data/products.json");
+          const products = await response.json();
+          displayProducts(products);
+        } catch (error) {
+          console.error("Fehler beim Laden der Produkte:", error);
+          document.getElementById("products-container").innerHTML =
+            '<div class="loading">Produkte konnten nicht geladen werden.</div>';
+        }
+      }
+
+      // Zeige Produkte an
+      function displayProducts(products) {
+        const container = document.getElementById("products-container");
+
+        products.forEach((product) => {
+          const card = `
+            <article class="blog-card">
+              <div class="card-content">
+                <span class="trend-indicator">Empfehlung ${product.trendScore}/100</span>
+                <h3>${product.headline}</h3>
+                <p>${product.intro}</p>
+                <div class="card-footer">
+                  <span class="price-tag">${product.price}€</span>
+                  <a href="${product.affiliateLink}" class="read-more" target="_blank" rel="nofollow noopener">
+                    Zum Angebot
+                  </a>
+                </div>
+              </div>
+            </article>
+          `;
+          container.innerHTML += card;
+        });
+      }
+
+      // Starte beim Laden der Seite
+      loadProducts();
+    </script>
+  </body>
+</html>
