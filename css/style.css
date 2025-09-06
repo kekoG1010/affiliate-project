@@ -29,59 +29,134 @@ body {
 .header {
   background: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }
 
 .header-top {
-  padding: 1.5rem 0;
+  padding: 0;
+  position: relative;
+
+  overflow: hidden;
+  max-height: 800px;
+}
+
+.header-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../anordnung-von-schwarzen-freitag-einkaufswagen-mit-kopienraum.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.header-top::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  z-index: 1;
 }
 
 .container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .header-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  padding: 3rem 0;
+  gap: 1.5rem;
 }
 
 .logo {
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  color: var(--text-primary);
+  color: white;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.logo::before {
+  content: "⚡";
+  font-size: 2rem;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.hero-tagline {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.header-search {
+  flex: 0 1 200px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.search-box {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  font-size: 0.9375rem;
+  transition: all 0.2s;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.search-box:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+  background: white;
+}
+
+.search-box::placeholder {
+  color: var(--text-secondary);
+}
+
+.trust-indicators {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.trust-indicator {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.logo::before {
-  content: "⚡";
-  font-size: 1.5rem;
-}
-
-.header-search {
-  flex: 0 1 400px;
-}
-
-.search-box {
-  width: 100%;
-  padding: 0.625rem 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 0.875rem;
-  transition: all 0.2s;
-}
-
-.search-box:focus {
-  outline: none;
-  border-color: var(--link-color);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+.trust-indicator::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: bold;
 }
 
 /* Navigation */
@@ -89,6 +164,9 @@ body {
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-color);
   padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .nav-content {
@@ -477,7 +555,7 @@ body {
 /* Sidebar */
 .sidebar {
   position: sticky;
-  top: 120px;
+  top: 60px;
   height: fit-content;
 }
 
@@ -619,8 +697,40 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .header-content {
+    padding: 2rem 0;
+    gap: 1rem;
+  }
+
+  .header-top {
+    min-height: 240px;
+  }
+  /* NEU: Hintergrundbild-Anpassung */
+  .header-top::before {
+    background-position: center center;
+    background-size: cover;
+  }
+  .logo {
+    font-size: 2rem;
+  }
+
+  .logo::before {
+    font-size: 1.5rem;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
   .header-search {
-    display: none;
+    padding: 0 1rem;
+  }
+
+  .trust-indicators {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.75rem;
   }
 
   .article {
@@ -652,6 +762,39 @@ footer {
 }
 
 @media (max-width: 480px) {
+  /* NEU: Hintergrundbild-Anpassung für Mobile */
+  .header-top {
+    max-height: 300px; /* Etwas mehr Höhe für Mobile */
+  }
+
+  .header-top::before {
+    background-position: 50% 30%; /* Zeigt oberen Bereich des Bilds */
+    background-size: 140% auto; /* Vergrößert das Bild etwas */
+  }
+
+  /* Dunklerer Overlay für bessere Lesbarkeit auf Mobile */
+  .header-top::after {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+  }
+  /* NEU für Modal: */
+  .modal-header {
+    height: 200px; /* Noch kleiner auf sehr kleinen Screens */
+  }
+
+  .modal-cta {
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    border-radius: 0;
+    margin: 0 -1.5rem -3rem;
+    padding: 1.5rem;
+    z-index: 10;
+  }
   .footer-content {
     grid-template-columns: 1fr;
   }
